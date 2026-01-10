@@ -31,10 +31,10 @@ class CharTest(models.Model):
 # 日付テスト
 class DateTest(models.Model):
 
-    date1 = models.PositiveIntegerField(verbose_name="null=False, blank=False")
-    date2 = models.PositiveIntegerField(verbose_name="null=False, blank=True", blank=True)
-    date3 = models.PositiveIntegerField(verbose_name="null=True, blank=False", null=True)
-    date4 = models.PositiveIntegerField(verbose_name="null=True, blank=True", null=True, blank=True)
+    date1 = models.DateTimeField(verbose_name="null=False, blank=False")
+    date2 = models.DateTimeField(verbose_name="null=False, blank=True", blank=True)
+    date3 = models.DateTimeField(verbose_name="null=True, blank=False", null=True)
+    date4 = models.DateTimeField(verbose_name="null=True, blank=True", null=True, blank=True)
 
     class Meta:
         db_table = "date_test"

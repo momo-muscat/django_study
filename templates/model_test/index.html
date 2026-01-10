@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block title %}モデルテスト{% endblock %}
+{% block content %}
+  <h1>モデルテスト</h1>
+
+<div>
+  <form method="POST">{% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">送信</button>
+  </form>
+{% endblock %}
