@@ -147,7 +147,7 @@ urlpatterns = [
     path('app名/', include('[app名].urls')),
 ]
 
-●appフォルダ内にurls.pyを作成
+●[アプリ名]フォルダ内にurls.pyを作成
 from django.urls import path
  
 urlpatterns = [
@@ -155,7 +155,7 @@ urlpatterns = [
 ]
 
 ●templateフォルダの作成
-「templates」フォルダ > 「app名」フォルダ
+[templates]フォルダ > [アプリ名]フォルダ
 
 
 
