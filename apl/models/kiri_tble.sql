@@ -1,0 +1,13 @@
+delete from kiri_tble where 1=1;
+insert into kiri_tble values ('9000','0001',TIMESTAMP '2026-02-07 06:49:33.599',TIMESTAMP '2026-02-07 06:49:38.896');
+insert into kiri_tble values ('9000','0002',TIMESTAMP '2026-02-07 06:49:33.599',TIMESTAMP '2026-02-07 06:49:38.896');
+insert into kiri_tble values ('9000','0003',TIMESTAMP '2026-02-07 06:49:33.599',TIMESTAMP '2026-02-07 06:49:38.896');
+insert into kiri_tble values ('9000','0004',TIMESTAMP '2026-02-07 06:49:33.599',TIMESTAMP '2026-02-07 06:49:38.896');
+insert into kiri_tble values ('9001','0101',TIMESTAMP '2026-02-07 06:49:33.599',TIMESTAMP '2026-02-07 06:49:38.896');
+insert into kiri_tble values ('9001','0102',TIMESTAMP '2026-02-07 06:49:33.599',TIMESTAMP '2026-02-07 06:49:38.896');
+insert into kiri_tble values ('9001','0103',TIMESTAMP '2026-02-07 06:49:33.599',TIMESTAMP '2026-02-07 06:49:38.896');
+insert into kiri_tble values ('9001','0104',TIMESTAMP '2026-02-07 06:49:33.599',TIMESTAMP '2026-02-07 06:49:38.896');
+insert into kiri_tble values ('9002','0201',TIMESTAMP '2026-02-07 06:49:33.599',TIMESTAMP '2026-02-07 06:49:38.896');
+insert into kiri_tble values ('9002','0202',TIMESTAMP '2026-02-07 06:49:33.599',TIMESTAMP '2026-02-07 06:49:38.896');
+insert into kiri_tble values ('9002','0203',TIMESTAMP '2026-02-07 06:49:33.599',TIMESTAMP '2026-02-07 06:49:38.896');
+insert into kiri_tble values ('9002','0204',TIMESTAMP '2026-02-07 06:49:33.599',TIMESTAMP '2026-02-07 06:49:38.896');

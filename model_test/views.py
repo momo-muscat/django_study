@@ -1,8 +1,10 @@
 from django.shortcuts import render
-from .models import NameMst
+from django.db.models import OuterRef, Subquery
+
+from apl.models.models import HaiinfoTbl, KiriTbl
 from .forms import ModelTestForm
 
-seached = False
+searched = False
 
 def ModelTestView(request):
     template_name = "model_test/index.html"
@@ -11,14 +13,34 @@ def ModelTestView(request):
     ctx = {}
     ctx["form"] = form
 
-    if request.GET:
-        # obj = {}
-        # qs = NameMst.objects.all()
-        # obj["object_list"] = qs
-
-        seached = True
-
     if request.POST:
-        pass
+        form = ModelTestForm(request.POST)
+        ctx["form"] = form
+        if form.is_valid():
+            denno = form.cleaned_data["denno"]
+
+            den_type_subquery = HaiinfoTbl.objects.filter(
+                denno=OuterRef("denno")
+            ).values("den_type")[:1]
+            s_den_type_subquery = HaiinfoTbl.objects.filter(
+                denno=OuterRef("s_denno")
+            ).values("den_type")[:1]
+
+            qs = KiriTbl.objects.filter(denno=denno).annotate(
+                den_type=Subquery(den_type_subquery),
+                s_den_type=Subquery(s_den_type_subquery),
+            ).values("denno", "den_type", "s_denno", "s_den_type").order_by("s_denno")
+
+            if not qs.exists():
+                qs = KiriTbl.objects.filter(s_denno=denno).annotate(
+                    den_type=Subquery(den_type_subquery),
+                    s_den_type=Subquery(s_den_type_subquery),
+                ).values("denno", "den_type", "s_denno", "s_den_type").order_by("s_denno")
+
+            if not qs.exists():
+                return render(request, template_name, ctx)
+
+            for item in qs:
+                print(item)
 
     return render(request, template_name, ctx)

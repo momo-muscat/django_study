@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import IntTest, CharTest, DateTest, FieldTest, NameMst
+from .models.models import IntTest, CharTest, DateTest, FieldTest, NameMst
 
 
 # 整数テスト

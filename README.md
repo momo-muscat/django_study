@@ -35,7 +35,6 @@ quit
 ```
 
 
-
 # 【Python】
 ## ● 仮想環境作成
 ```
@@ -69,16 +68,20 @@ python.exe -m pip install --upgrade pip
 ```
 
 
-
 # 【Django】
 ## ● Djangoをインストール
 ```
-pip install django
+python -m pip install Django
 ```
 
 ## ● インストール確認
 ```
 django-admin --version
+```
+
+## ● Djangoをアップデート
+```
+python -m pip install -U Django
 ```
 
 ## ● Djangoプロジェクトの作成
@@ -95,7 +98,7 @@ django_study/          # プロジェクトのルートディレクトリ
 └── apl/               # プロジェクト設定ディレクトリ  
     ├── __init__.py    # Pythonパッケージとして認識させるファイル  
     ├── settings.py    # プロジェクトの設定ファイル  
-    ├── urls.py        # URLパターンの定義  
+    ├── urls.py        # URLディスパッチの定義  
     ├── asgi.py        # 非同期サーバ用の設定  
     └── wsgi.py        # 本番サーバ用の設定
 ```
@@ -107,11 +110,11 @@ http://127.0.0.1:8000/
 ```
 
 ## ● VSCodeでプロジェクトを開く
-1. VSCodeを起動
+1.  VSCodeを起動
 1. 「ファイル」→「フォルダーを開く」
-1. 作成したmysiteフォルダを選択
+1.  プロジェクトのルートディレクトリを選択
 1. 「Ctrl + Shift + P」を押してコマンドパレットを開く
-1. 「Python: Select Interpreter」と入力してパスを選択
+1. 「Python: Select Interpreter」と入力してインタプリタのパスを選択
 
 ## ● settings.pyで言語・タイムゾーンの設定変更
 ```
@@ -143,7 +146,7 @@ setteings.pyのINSTALLED_APPSに追加
 
 ## ● psycopg2インストール
 ```
-pip install psycopg2
+python -m pip install psycopg2
 ```
 
 ## ● setteings.pyでDB接続設定（PostgreSQL）
@@ -215,6 +218,7 @@ urlpatterns = [
 ```
 [templates]フォルダ > [アプリ名]フォルダ
 ```
+
 
 # 【Git / GitHub】
 ## ● 新規作成時

@@ -1,6 +1,38 @@
 from django.db import models
 from django.core.validators import MinValueValidator, MaxValueValidator
 
+# 切り分けテーブル
+class KiriTbl(models.Model):
+
+    denno = models.CharField(verbose_name="親伝票番号", db_column="親伝票番号", max_length=14)
+    s_denno = models.CharField(verbose_name="子伝票番号", db_column="子伝票番号", max_length=14, primary_key=True)
+    ins_at = models.DateTimeField(auto_now_add=True)
+    upd_at = models.DateTimeField(auto_now=True, editable=True)
+
+    def __str__(self):
+        return self.s_denno
+    
+    class Meta:
+        db_table = "kiri_tble"
+        verbose_name = "切り分けテーブル"
+        verbose_name_plural = "切り分けテーブル"
+
+# 配送情報テーブル
+class HaiinfoTbl(models.Model):
+
+    denno = models.CharField(verbose_name="伝票番号", db_column="伝票番号", max_length=14, primary_key=True)
+    den_type = models.CharField(verbose_name="伝票タイプ", db_column="伝票タイプ", max_length=1)
+    ins_at = models.DateTimeField(auto_now_add=True)
+    upd_at = models.DateTimeField(auto_now=True, editable=True)
+
+    def __str__(self):
+        return self.denno
+    
+    class Meta:
+        db_table = "haiinfo_tbl"
+        verbose_name = "配送情報テーブル"
+        verbose_name_plural = "配送情報テーブル"
+
 
 # 整数テスト
 class IntTest(models.Model):
