@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models.models import IntTest, CharTest, DateTest, FieldTest, NameMst
+from .models.models import IntTest, CharTest, DateTest, FieldTest, NameMst, HaiinfoTbl, KiriTbl
 
 
 # 整数テスト
@@ -25,3 +25,5 @@ class NameMstAdmin(admin.ModelAdmin):
 
 admin.site.register(NameMst, NameMstAdmin)
 
+admin.site.register(HaiinfoTbl)
+admin.site.register(KiriTbl)

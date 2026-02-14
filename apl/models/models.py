@@ -24,6 +24,7 @@ class HaiinfoTbl(models.Model):
     den_type = models.CharField(verbose_name="伝票タイプ", db_column="伝票タイプ", max_length=1)
     ins_at = models.DateTimeField(auto_now_add=True)
     upd_at = models.DateTimeField(auto_now=True, editable=True)
+    order_date = models.DateTimeField(null=True, verbose_name="注文日時", db_column="注文日時")
 
     def __str__(self):
         return self.denno

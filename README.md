@@ -87,7 +87,8 @@ python -m pip install -U Django
 ## ● Djangoプロジェクトの作成
 （最後のピリオドがないとプロジェクトフォルダが二重構造になる）
 ```
-uv run django-admin startproject apl .
+uv run django-admin startproject [プロジェクト名]
+uv run django-admin startproject [プロジェクト名] .
 ```
 
 ## ● 作成されたファイルの確認
