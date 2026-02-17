@@ -4,39 +4,43 @@ from django.utils import timezone
 
 from apl.models.models import HaiinfoTbl, KiriTbl
 from .forms import ModelTestForm
+from django.utils.dateparse import parse_datetime
+import zoneinfo
 
 searched = False
 
 def ModelTestView(request):
     template_name = "model_test/index.html"
+    print(f"[ModelTestView] method={request.method}")
 
     form = ModelTestForm()
     ctx = {}
     ctx["form"] = form
 
-    if request.POST:
+    if request.method == "POST":
+        print(f"[ModelTestView] POST={request.POST.dict()}")
         form = ModelTestForm(request.POST)
         ctx["form"] = form
 
         if form.is_valid():
             denno = form.cleaned_data["denno"]
+            print("denno: ", denno)
             order_date_from = form.cleaned_data["order_date_from"]
             order_date_to = form.cleaned_data["order_date_to"]
-            
+
             # 時刻を付加
             if order_date_from:
-                # order_date_from = str(order_date_from) + " 00:00:00.000"
-                order_date_from = str(order_date_from) + " 5:34:05.593"
+                order_date_from = str(order_date_from) + " 00:00:00.000"
+                order_date_from = parse_datetime(order_date_from)
             if order_date_to:
-                # order_date_to = str(order_date_to) + " 23:59:59.999"
-                order_date_to = str(order_date_to) + " 5:34:05.593"
-            
+                order_date_to = str(order_date_to) + " 23:59:59.999"
+                order_date_to = parse_datetime(order_date_to)
             print("order_date_from: ", order_date_from)
             print("order_date_to: ", order_date_to)
 
             qs = HaiinfoTbl.objects.filter(
                 Q(order_date__gte=order_date_from) & Q(order_date__lte=order_date_to)
-            )
+            ).order_by("denno")
 
             # den_type_subquery = HaiinfoTbl.objects.filter(
             #     denno=OuterRef("denno")
@@ -57,5 +61,7 @@ def ModelTestView(request):
 
             for item in qs:
                 print(item.denno, timezone.localtime(item.order_date))
+        else:
+            print(f"[ModelTestView] form invalid: {form.errors.as_json()}")
 
     return render(request, template_name, ctx)
