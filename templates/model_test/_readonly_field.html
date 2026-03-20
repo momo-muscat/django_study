@@ -1,0 +1,14 @@
+<p class="{% if readonly %}readonly-field{% endif %}">
+    <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+    <input
+        type="text"
+        name="{{ field.html_name }}"
+        id="{{ field.id_for_label }}"
+        value="{{ field.value|default_if_none:'' }}"
+        {% if readonly %}readonly class="readonly-input"{% endif %}
+    >
+    {% for error in field.errors %}
+        <span>{{ error }}</span>
+    {% endfor %}
+    {% if readonly %}<span> (読み取り専用)</span>{% endif %}
+</p>

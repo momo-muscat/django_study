@@ -13,13 +13,23 @@ def ModelTestView(request):
     template_name = "model_test/index.html"
     print(f"[ModelTestView] method={request.method}")
 
-    form = ModelTestForm()
+    readonly_test1 = True
+    readonly_test2 = False
+    form = ModelTestForm(test1_readonly=readonly_test1, test2_readonly=readonly_test2)
     ctx = {}
     ctx["form"] = form
 
     if request.method == "POST":
         print(f"[ModelTestView] POST={request.POST.dict()}")
-        form = ModelTestForm(request.POST)
+        # View logic can decide readonly flags dynamically.
+        readonly_test1 = bool(request.POST.get("denno"))
+        readonly_test2 = bool(request.POST.get("order_date_from") and request.POST.get("order_date_to"))
+
+        form = ModelTestForm(
+            request.POST,
+            test1_readonly=readonly_test1,
+            test2_readonly=readonly_test2,
+        )
         ctx["form"] = form
 
         if form.is_valid():

@@ -4,9 +4,28 @@
 {% block content %}
   <h1>モデルテスト</h1>
 
+<style>
+  .readonly-input {
+    background-color: #e5e7eb;
+    color: #4b5563;
+  }
+
+  .readonly-field input {
+    background-color: #e5e7eb;
+    color: #4b5563;
+    pointer-events: none;
+  }
+</style>
+
 <div>
   <form method="POST">{% csrf_token %}
-    {{ form.as_p }}
+    <p>{{ form.denno.label_tag }} {{ form.denno }}</p>
+    <p>{{ form.order_date_from.label_tag }} {{ form.order_date_from }}</p>
+    <p>{{ form.order_date_to.label_tag }} {{ form.order_date_to }}</p>
+
+    {% include "model_test/_readonly_field.html" with field=form.test1 readonly=form.test1_readonly %}
+    {% include "model_test/_readonly_field.html" with field=form.test2 readonly=form.test2_readonly %}
+
     <button type="submit">送信</button>
   </form>
 </div>
