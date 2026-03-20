@@ -19,12 +19,11 @@
 
 <div>
   <form method="POST">{% csrf_token %}
-    <p>{{ form.denno.label_tag }} {{ form.denno }}</p>
-    <p>{{ form.order_date_from.label_tag }} {{ form.order_date_from }}</p>
-    <p>{{ form.order_date_to.label_tag }} {{ form.order_date_to }}</p>
-
-    {% include "model_test/_readonly_field.html" with field=form.test1 readonly=form.test1_readonly %}
-    {% include "model_test/_readonly_field.html" with field=form.test2 readonly=form.test2_readonly %}
+    {% include "model_test/_readonly_field.html" with field=form.denno readonly=form.denno.field.readonly %}
+    {% include "model_test/_readonly_field.html" with field=form.order_date_from readonly=form.order_date_from.field.readonly %}
+    {% include "model_test/_readonly_field.html" with field=form.order_date_to readonly=form.order_date_to.field.readonly %}
+    {% include "model_test/_readonly_field.html" with field=form.test1 readonly=form.test1.field.readonly %}
+    {% include "model_test/_readonly_field.html" with field=form.test2 readonly=form.test2.field.readonly %}
 
     <button type="submit">送信</button>
   </form>
